@@ -1,16 +1,15 @@
 const mongoose = require("mongoose");
 
-const connectionString = process.env.DB?.trim();
+const connectionString = process.env.DB ? process.env.DB.trim() : null;
 
 if (!connectionString) {
   console.error("ERROR: DB connection string is not defined in environment variables");
-  console.error("Please create a .env file with your MongoDB connection string.");
-  console.error("You can copy sample.env to .env and update the DB value with your actual password.");
+  console.error("Please set the DB environment variable with your MongoDB connection string.");
   process.exit(1);
 }
 
 if (connectionString.includes("<db_password>")) {
-  console.error("ERROR: Please replace <db_password> in your .env file with your actual MongoDB password");
+  console.error("ERROR: Please replace <db_password> in your connection string with your actual MongoDB password");
   process.exit(1);
 }
 
