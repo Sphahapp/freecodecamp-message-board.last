@@ -4,8 +4,8 @@ A freeCodeCamp Information Security project - An anonymous message board applica
 
 ## Project Links
 
-- **Live Solution**: [Your deployed URL here]
-- **Source Code**: [Your GitHub repository URL here]
+- **Live Solution**: [Your deployed URL here - deploy to Render/Railway/Heroku]
+- **Source Code**: https://github.com/Sphahapp/freecodecamp-message-board.last
 
 ## Features
 
