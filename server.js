@@ -57,21 +57,24 @@ app.use(function (req, res, next) {
 });
 
 //Start our server and tests!
-const port = process.env.PORT || 3000;
-app.listen(port, function () {
-  console.log("Listening on port " + port);
-  if (process.env.NODE_ENV === "test") {
-    console.log("Running Tests...");
-    setTimeout(function () {
-      try {
-        runner.run();
-      } catch (e) {
-        var error = e;
-        console.log("Tests are not valid:");
-        console.log(error);
-      }
-    }, 1500);
-  }
-});
+// Only start listening if not in serverless environment (Netlify)
+if (process.env.NETLIFY !== "true" && !process.env.AWS_LAMBDA_FUNCTION_NAME) {
+  const port = process.env.PORT || 3000;
+  app.listen(port, function () {
+    console.log("Listening on port " + port);
+    if (process.env.NODE_ENV === "test") {
+      console.log("Running Tests...");
+      setTimeout(function () {
+        try {
+          runner.run();
+        } catch (e) {
+          var error = e;
+          console.log("Tests are not valid:");
+          console.log(error);
+        }
+      }, 1500);
+    }
+  });
+}
 
 module.exports = app; //for testing
