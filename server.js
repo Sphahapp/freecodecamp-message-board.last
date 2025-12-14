@@ -46,6 +46,11 @@ fccTestingRoutes(app);
 //Routing for API
 apiRoutes(app);
 
+//Health check endpoint for Render
+app.get("/healthz", function (req, res) {
+  res.status(200).type("text").send("OK");
+});
+
 //404 Not Found Middleware
 app.use(function (req, res, next) {
   res.status(404).type("text").send("Not Found");
